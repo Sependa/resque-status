@@ -221,6 +221,9 @@ module Resque
           when 'completed' then 100
           when 'queued' then 0
           else
+            total = 1 unless total.is_kind?(Numeric)
+            num = 1 unless num.is_kind?(Numeric)
+
             t = (total == 0 || total.nil?) ? 1 : total
             (((num || 0).to_f / t.to_f) * 100).to_i
           end
